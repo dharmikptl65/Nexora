@@ -1,0 +1,20 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: #f8f9fa;
+
+  background-image:
+    linear-gradient(to right, #dee2e6 .5px, transparent .5px),
+    linear-gradient(to bottom, #dee2e6 .5px, transparent .5px);
+
+  background-size: 80px 105px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(.78px);
+
+  background-attachment: fixed;
+}

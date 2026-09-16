@@ -1,0 +1,648 @@
+/* =========================================================
+   MOVIE SELECTOR SECTION
+========================================================= */
+
+.movie-selector-section {
+  position: relative;
+  width: 100%;
+  padding: 90px 0;
+  overflow: hidden;
+  background: #09090b;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.movie-selector-container {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.movie-selector-header {
+  max-width: 700px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.movie-selector-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  color: #22d3ee;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.movie-selector-eyebrow span {
+  width: 25px;
+  height: 1px;
+  background: #22d3ee;
+}
+
+.movie-selector-header h2 {
+  margin: 0 0 15px;
+  color: #fafafa;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.movie-selector-header p {
+  max-width: 580px;
+  margin: 0 auto;
+  color: #a1a1aa;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   MOVIE SELECTOR
+========================================================= */
+
+.movie-selector {
+  display: flex;
+  width: 100%;
+  max-width: 1150px;
+  height: 430px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   MOVIE CARD
+========================================================= */
+
+.movie-selector-card {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  min-width: 60px;
+  min-height: 100px;
+  margin: 0;
+  overflow: hidden;
+  border: 2px solid #27272a;
+  border-radius: 0;
+  background-color: #18181b;
+  background-position: center;
+  background-size: auto 120%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(-50px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition:
+    flex 0.7s ease,
+    background-size 0.7s ease,
+    background-position 0.7s ease,
+    border-color 0.7s ease,
+    box-shadow 0.7s ease,
+    opacity 0.7s ease,
+    transform 0.7s ease;
+
+  will-change:
+    flex,
+    background-size,
+    background-position,
+    box-shadow;
+}
+
+
+/* First card */
+
+.movie-selector-card:first-child {
+  border-radius: 18px 0 0 18px;
+}
+
+
+/* Last card */
+
+.movie-selector-card:last-child {
+  border-radius: 0 18px 18px 0;
+}
+
+
+/* Animation */
+
+.movie-selector-card.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* Active card */
+
+.movie-selector-card.active {
+  flex: 7 1 0;
+
+  background-size: auto 100%;
+
+  /* border-color: rgba(255, 255, 255, 0.85); */
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.movie-selector-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 9, 11, 0.05) 0%,
+      rgba(9, 9, 11, 0.12) 40%,
+      rgba(9, 9, 11, 0.88) 100%
+    );
+
+  pointer-events: none;
+
+  transition: background 0.7s ease;
+}
+
+
+/* Active overlay */
+
+.movie-selector-card.active .movie-selector-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 9, 11, 0.05) 0%,
+      rgba(9, 9, 11, 0.05) 35%,
+      rgba(9, 9, 11, 0.25) 55%,
+      rgba(9, 9, 11, 0.94) 100%
+    );
+}
+
+
+/* =========================================================
+   BOTTOM SHADOW
+========================================================= */
+
+.movie-selector-shadow {
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  left: 0;
+
+  height: 150px;
+
+  pointer-events: none;
+
+  box-shadow:
+    inset 0 -120px 0 -120px rgba(0, 0, 0, 0.8);
+
+  transition:
+    bottom 0.7s ease,
+    box-shadow 0.7s ease;
+}
+
+.movie-selector-shadow.shadow-active {
+  bottom: 0;
+
+  box-shadow:
+    inset 0 -120px 120px -70px rgba(0, 0, 0, 0.95);
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.movie-selector-label {
+  position: absolute;
+  right: 0;
+  bottom: 25px;
+  left: 0;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 14px;
+
+  padding: 0 20px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.movie-selector-icon {
+  display: flex;
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+
+  background: rgba(20, 20, 22, 0.78);
+
+  color: #fafafa;
+  font-size: 18px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.movie-selector-card:hover .movie-selector-icon {
+  transform: scale(1.08);
+}
+
+.movie-selector-card.active .movie-selector-icon {
+  background: rgba(34, 211, 238, 0.18);
+  border-color: rgba(34, 211, 238, 0.5);
+  color: #22d3ee;
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.movie-selector-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.movie-selector-title {
+  margin: 0;
+
+  color: #fafafa;
+
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(25px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.movie-selector-title.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.movie-selector-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin-top: 7px;
+
+  color: #d4d4d8;
+
+  font-size: 11px;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(25px);
+
+  transition:
+    opacity 0.7s ease 0.05s,
+    transform 0.7s ease 0.05s;
+}
+
+.movie-selector-details.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.movie-selector-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.movie-selector-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.movie-selector-meta svg {
+  color: #f97316;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.movie-selector-description {
+  max-width: 400px;
+
+  margin: 8px 0 0;
+
+  color: #a1a1aa;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  opacity: 0;
+  transform: translateX(25px);
+
+  transition:
+    opacity 0.7s ease 0.1s,
+    transform 0.7s ease 0.1s;
+}
+
+.movie-selector-description.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   ACTIVE LINE
+========================================================= */
+
+.movie-selector-active-line {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 3px;
+  opacity: 0;
+
+  transform: scaleX(0);
+
+  transform-origin: left;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.7s ease;
+}
+
+.movie-selector-active-line.active {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.movie-selector-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 22px;
+
+  color: #52525b;
+
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.movie-selector-hint svg {
+  color: #22d3ee;
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  .movie-selector-container {
+    padding: 0 25px;
+  }
+
+  .movie-selector {
+    height: 390px;
+  }
+
+  .movie-selector-card.active {
+    flex: 5 1 0;
+  }
+
+  .movie-selector-label {
+    padding: 0 16px;
+    gap: 10px;
+  }
+
+  .movie-selector-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .movie-selector-title {
+    font-size: 23px;
+  }
+
+  .movie-selector-description {
+    max-width: 330px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .movie-selector-section {
+    padding: 65px 0;
+  }
+
+  .movie-selector-container {
+    padding: 0 15px;
+  }
+
+  .movie-selector-header {
+    margin-bottom: 30px;
+  }
+
+  .movie-selector-header h2 {
+    font-size: 38px;
+  }
+
+  .movie-selector-header p {
+    font-size: 13px;
+  }
+
+  .movie-selector {
+    height: 380px;
+  }
+
+  .movie-selector-card {
+    min-width: 42px;
+    background-size: auto 120%;
+  }
+
+  .movie-selector-card.active {
+    flex: 6 1 0;
+  }
+
+  .movie-selector-label {
+    bottom: 18px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .movie-selector-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .movie-selector-title {
+    font-size: 20px;
+  }
+
+  .movie-selector-details {
+    gap: 8px;
+    font-size: 9px;
+  }
+
+  .movie-selector-description {
+    display: none;
+  }
+
+  .movie-selector-meta {
+    gap: 7px;
+  }
+
+  .movie-selector-hint {
+    margin-top: 18px;
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .movie-selector-section {
+    padding: 50px 0;
+  }
+
+  .movie-selector-container {
+    padding: 0 10px;
+  }
+
+  .movie-selector-header h2 {
+    font-size: 32px;
+  }
+
+  .movie-selector-header p {
+    font-size: 12px;
+  }
+
+  .movie-selector {
+    height: 320px;
+  }
+
+  .movie-selector-card:first-child {
+    border-radius: 14px 0 0 14px;
+  }
+
+  .movie-selector-card:last-child {
+    border-radius: 0 14px 14px 0;
+  }
+
+  .movie-selector-label {
+    bottom: 14px;
+    padding: 0 8px;
+    gap: 7px;
+  }
+
+  .movie-selector-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .movie-selector-title {
+    font-size: 17px;
+  }
+
+  .movie-selector-details {
+    margin-top: 4px;
+    font-size: 8px;
+  }
+
+  .movie-selector-card:not(.active) .movie-selector-label {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .movie-selector-card:not(.active) .movie-selector-info {
+    display: none;
+  }
+}
